@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>AnonyDis</title>
+  <%=#config.js %>
+  <%=#config.css %>
+</head>
+<body>
+  <section class="d-nav">
+  <nav class="navbar navbar-default">
+    <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">AnonyDis</a>
+    </div>
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li ><a onclick="fatie()" href="#">发帖</a></li>
+        <li><a href="#">
+          <i class="fa fa-bell" aria-hidden="true"></i>          
+        </a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control search" placeholder="Search">
+        </div>
+        <button type="submit" class="btn-search btn btn-default">
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a class="me" href="#"></a></li>
+      </ul>
+    </div>
+    </div>
+  </nav>
+  </section>
+
+  <!-- 中心开始 -->
+  <section class="center">
+    <div class="container">
+      <div class="left col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        {{ each post }}
+        <div class="post-item">
+          <div class="media">
+            <a class="pull-left info-i" href="#">
+              <img class="media-object" src="{{ images[$index][0] }}" alt="测试蹄片">
+            </a>
+            <div class="media-body info-p">
+              <a href="#"><h3>{{ $value.title }}</h3></a>
+              <div class="row author">
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                  <img src="{{ images }}" alt="">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <a href="#">{{ $value.postuser }}</a>
+                </div>
+                <div class="push-4 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  {{ $value.posttime }}
+                </div>
+                <div class="pull-right col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                  <button type="button" class="dis-btn btn btn-default">评论</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{ /each }}
+        <div id="sendpost">
+          
+          <form id="form1" method="POST" enctype ="multipart/form-data">
+            <legend class="title-main">帖子发表</legend>
+            <div class="form-group">
+              <label class="color" for="title">帖子主题</label>
+              <input type="text" class="form-control" name="title" id="title" placeholder="震惊世界的标题党,99%的人看完后笑喷了!">
+            </div>
+            <div class="form-group">
+              <label class="color" for="exampleInputFile">图片发表</label>
+              <input class="color" type="file"  id="exampleInputFile" multiple="multiple" onchange="imagechange(this)" value="谁是安徽调试的a">
+              <p class="help-block color">无图无真相，没图发个屁。</p>
+            </div>
+            <textarea style="resize:none;" name="content" class="form-control" rows="9"></textarea>
+            <button style="margin-top:10px;" type="button" onclick="upload1()" class="btn btn-primary btn-lg btn-block">发表发表发发表发表发表表发发表发表</button>
+          </form>
+        </div>
+      </div>
+      <div class="right hidden-xs hidden-sm col-md-4 col-lg-4">
+        <div class="title">组队聊天室</div>
+        <div class="group-user clearfix">
+          <div class="user">
+            <img src="/img/me.png" alt="">
+            <span>小兵旭旭</span>
+          </div>
+          <div class="user">
+            <img src="/img/me.png" alt="">
+            <span>小兵旭旭</span>
+          </div>
+          <div class="user">
+            <img src="/img/me.png" alt="">
+            <span>小兵旭旭</span>
+          </div>
+          <div class="user">
+            <img src="/img/me.png" alt="">
+            <span>小兵旭旭</span>
+          </div>
+          <div class="user">
+            <img src="/img/me.png" alt="">
+            <span>小兵旭旭</span>
+          </div>
+        </div>
+        <div class="content">
+          <div class="message">
+            <img src="/img/me.png" alt="">
+            <span>小兵旭旭</span>
+            <span>18:21</span>
+            <p>我是内容，你现在在干嘛，我打算弄个宽度，然后换行什么的</p>
+          </div>
+          <div class="m-message clearfix">
+            <span>18:21</span>
+            <span>小兵旭旭</span>
+            <img src="/img/me.png" alt="">
+            <p >我是内容，你现在在干嘛，我打算弄个宽度，然后换行什么的</p>
+          </div>
+        </div>
+        <div class="input-submit">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for...">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bar">
+    <div class="container">
+      
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        Copyright © DogXu Blog 2018
+      </div>
+      <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        Power by Jekyll
+      </div>
+
+    </div>
+  </section>
+  
+</body>
+</html>

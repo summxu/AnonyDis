@@ -1,0 +1,226 @@
+@mainColor:#0084FF;
+@subColor:#8590A6;
+@fontColor:#eeeeee;
+@hoverColor:#055FB7;
+
+/* 初始化 */
+html,body {
+  height: 100%;
+}
+.w {
+  width:970px;
+}
+p {
+  margin: 0
+}
+a,a:hover {
+  color: #000;
+  text-decoration-line: none
+}
+/* 导航 */
+@media (min-width: 1200px){
+  .container {
+    width: 970px;
+  }
+}
+.d-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  // height: 100%;
+  z-index: 99;
+}
+.navbar {
+
+  background-color: @mainColor;
+  color: @fontColor!important;
+}
+.navbar-default .navbar-brand,.navbar-default .navbar-brand a{
+  color: @fontColor!important;
+}
+.navbar-default .navbar-nav>li>a {
+  color: @fontColor!important;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  background-color: @hoverColor;
+}
+.navbar .search {
+  border-top-right-radius: 0px!important;
+  border-bottom-right-radius: 0px!important;
+}
+.navbar .btn-search {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  margin-left: -4px;
+  background-color: #0D74DE;
+  color: @fontColor;
+  // border: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05), inset 0 1px 1px rgba(255,255,255,.15)
+}
+.me {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: url('/img/me.png') center no-repeat;
+  background-size: 80%;
+}
+// <!-- 中心开始 -->
+.center {
+  position: relative;
+  // bottom: 0;
+  padding-top: 70px;
+}
+.center .left {
+  // background-color: pink;
+  span {
+    display: block;
+    height: 100px;
+    width: 100%;
+  }
+  #sendpost {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(10,10,10,.8);
+    height:500px;
+    width:100%;
+    padding: 20px;
+    .color {
+      color:#ccc;
+    }
+    .title-main {
+      .color();
+      text-align: center;
+    }
+  }
+}
+.bar {
+  position: fixed;
+  bottom: 0;
+  width: 10px;
+  background-color: @subColor;
+  width: 100%;
+}
+/* .bar-inner {
+  text-align: center;
+  padding: 50px;
+} */
+.center {
+  padding-bottom: 2%;
+  .post-item {
+    padding: 15px 0 ;
+    border-bottom: 1px solid #ccc;
+  }
+  .info-p {
+    padding-right: 20px;
+    // width: 280px;
+    // height: 150px;
+    overflow: hidden;
+    margin: 0;
+    .author {
+      padding-top: 20px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+      div {
+        height: 20px;
+        line-height: 20px;
+        color: #777;
+
+      }
+      .dis-btn {
+        height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+        padding: 0 2px;
+        background-color: @mainColor;
+        color: @fontColor
+      }
+    }
+  }
+  .info-i {
+    width: 150px;
+    // height: 150px;
+    margin-right: 20px;
+    overflow: hidden;
+    img {
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+      transition: all .5s ease-out .1s;
+    }
+  }
+}
+.right {
+  height: 85%;
+  width: 300px;
+  position: fixed;
+  right: 0;
+  // background-color: skyblue;
+  overflow: hidden;
+  .input-group {
+    position: absolute;
+    bottom: 0;
+  }
+  .title {
+    text-align: center;
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 5px 0;
+  }
+  .group-user {
+    // background-color: #3f3f3f;
+    width: 500px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    .user {
+      width: 67px;
+      height: 67px;
+      text-align: center;
+      float: left;
+      img {
+        width: 50px;
+      }
+    }
+  }
+  .content .message ,.content .m-message {
+    margin: 10px 0;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    span {
+      vertical-align: middle;
+    }
+    p {
+      background-color: @mainColor;
+      padding: 5px;
+      color: @fontColor;
+      border-radius: 10px;
+    }
+  }
+  .content .message {
+    p {
+      width: 200px;
+      margin-left: 22px;
+    }
+  }
+  .content .m-message {
+    text-align: right;
+    p {
+      width: 200px;
+      text-align: left;
+      margin-right: 22px;
+      float: right;
+    }
+  }
+}
+.center .container {
+  position: relative;
+  top: 0;
+}

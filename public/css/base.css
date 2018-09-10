@@ -1,0 +1,214 @@
+/* 初始化 */
+html,
+body {
+  height: 100%;
+}
+.w {
+  width: 970px;
+}
+p {
+  margin: 0;
+}
+a,
+a:hover {
+  color: #000;
+  text-decoration-line: none;
+}
+/* 导航 */
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+.d-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.navbar {
+  background-color: #0084FF;
+  color: #eeeeee !important;
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand a {
+  color: #eeeeee !important;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #eeeeee !important;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .active > a:hover {
+  background-color: #055FB7;
+}
+.navbar .search {
+  border-top-right-radius: 0px!important;
+  border-bottom-right-radius: 0px!important;
+}
+.navbar .btn-search {
+  border-top-left-radius: 0px!important;
+  border-bottom-left-radius: 0px!important;
+  margin-left: -4px;
+  background-color: #0D74DE;
+  color: #eeeeee;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+.me {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: url('/img/me.png') center no-repeat;
+  background-size: 80%;
+}
+.center {
+  position: relative;
+  padding-top: 70px;
+}
+.center .left span {
+  display: block;
+  height: 100px;
+  width: 100%;
+}
+.center .left #sendpost {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(10, 10, 10, 0.8);
+  height: 500px;
+  width: 100%;
+  padding: 20px;
+}
+.center .left #sendpost .color {
+  color: #ccc;
+}
+.center .left #sendpost .title-main {
+  color: #ccc;
+  text-align: center;
+}
+.bar {
+  position: fixed;
+  bottom: 0;
+  width: 10px;
+  background-color: #8590A6;
+  width: 100%;
+}
+/* .bar-inner {
+  text-align: center;
+  padding: 50px;
+} */
+.center {
+  padding-bottom: 2%;
+}
+.center .post-item {
+  padding: 15px 0 ;
+  border-bottom: 1px solid #ccc;
+}
+.center .info-p {
+  padding-right: 20px;
+  overflow: hidden;
+  margin: 0;
+}
+.center .info-p .author {
+  padding-top: 20px;
+}
+.center .info-p .author img {
+  width: 20px;
+  height: 20px;
+}
+.center .info-p .author div {
+  height: 20px;
+  line-height: 20px;
+  color: #777;
+}
+.center .info-p .author .dis-btn {
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  padding: 0 2px;
+  background-color: #0084FF;
+  color: #eeeeee;
+}
+.center .info-i {
+  width: 150px;
+  margin-right: 20px;
+  overflow: hidden;
+}
+.center .info-i img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  transition: all 0.5s ease-out 0.1s;
+}
+.right {
+  height: 85%;
+  width: 300px;
+  position: fixed;
+  right: 0;
+  overflow: hidden;
+}
+.right .input-group {
+  position: absolute;
+  bottom: 0;
+}
+.right .title {
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 5px 0;
+}
+.right .group-user {
+  width: 500px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.right .group-user .user {
+  width: 67px;
+  height: 67px;
+  text-align: center;
+  float: left;
+}
+.right .group-user .user img {
+  width: 50px;
+}
+.right .content .message,
+.right .content .m-message {
+  margin: 10px 0;
+}
+.right .content .message img,
+.right .content .m-message img {
+  width: 20px;
+  height: 20px;
+}
+.right .content .message span,
+.right .content .m-message span {
+  vertical-align: middle;
+}
+.right .content .message p,
+.right .content .m-message p {
+  background-color: #0084FF;
+  padding: 5px;
+  color: #eeeeee;
+  border-radius: 10px;
+}
+.right .content .message p {
+  width: 200px;
+  margin-left: 22px;
+}
+.right .content .m-message {
+  text-align: right;
+}
+.right .content .m-message p {
+  width: 200px;
+  text-align: left;
+  margin-right: 22px;
+  float: right;
+}
+.center .container {
+  position: relative;
+  top: 0;
+}

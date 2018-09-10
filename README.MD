@@ -1,3 +1,16 @@
+# 项目架构
+  - 前台
+    1.  bootstrap页面布局+屏幕自适应 
+    2.  jQuery ajax
+    3.  particles粒子效果
+  - 后台
+    1.  node数据处理
+    2.  express web框架
+    3.  art-templte数据渲染
+    4.  moment 时间格式化
+    5.  connect-multipart（中间件） 文件接收
+    6.  mongoDB 数据存储
+    7.  mongoose DAO层
 # 页面结构
   - 登录注册页
     1.  按钮两行排列

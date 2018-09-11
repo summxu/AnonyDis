@@ -3,7 +3,7 @@
 {{ block content }}
 <section class="center">
 
-<form id="form-register">
+<form action="/register" method="POST" id="form-register">
   <legend>注册</legend>
 
   <div class="form-group">
@@ -12,7 +12,7 @@
   </div>
   <div class="form-group">
     <label for="nickname">名字</label>
-    <input type="text" name="username" class="form-control" id="username" placeholder="Input field">
+    <input type="text" name="nickname" class="form-control" id="username" placeholder="Input field">
   </div>
   <div class="form-group">
     <label for="password">密码</label>
@@ -21,24 +21,24 @@
 
   
 
-  <button id="register-btn" type="button" class="btn btn-primary">注册</button>
+  <button type="submit" class="btn btn-primary">注册</button>
 </form>
 
 </section>
 
 <script>
-$("#register-btn").on('click', function (e) {
-  var formData = $('#form-register').serialize()
-  $.ajax({
-    type: "post",
-    url: "/register",
-    data: formData,
-    dataType: 'json',
-    success: function (response) {
-      console.log(response)
-    }
-  });
-});
+// $("#register-btn").on('click', function (e) {
+//   var formData = $('#form-register').serialize()
+//   $.ajax({
+//     type: "post",
+//     url: "/register",
+//     data: formData,
+//     dataType: 'json',
+//     success: function (response) {
+//       console.log(response)
+//     }
+//   });
+// });
 </script>
 
 {{ /block }}

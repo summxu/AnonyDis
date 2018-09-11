@@ -1,6 +1,6 @@
 {{ extend './_layout/home.html' }}
 {{ block 'nickname' }}{{ userinfo.nickname }}{{ /block }}
-{{ block 'photo' }}<img src="{{ userinfo.photo }}" class="me img-circle">{{ /block }}
+{{ block 'photo' }}<img id="userimg" src="{{ userinfo.photo }}" class="me img-circle">{{ /block }}
 {{ block content }}
 <!-- 中心开始 -->
 <section class="center">
@@ -53,22 +53,6 @@
     <div class="right hidden-xs hidden-sm col-md-4 col-lg-4">
       <div class="title">组队聊天室</div>
       <div class="group-user clearfix">
-        <div class="user">
-          <img src="/img/me.png" alt="">
-          <span>小兵旭旭</span>
-        </div>
-        <div class="user">
-          <img src="/img/me.png" alt="">
-          <span>小兵旭旭</span>
-        </div>
-        <div class="user">
-          <img src="/img/me.png" alt="">
-          <span>小兵旭旭</span>
-        </div>
-        <div class="user">
-          <img src="/img/me.png" alt="">
-          <span>小兵旭旭</span>
-        </div>
         <div class="user">
           <img src="/img/me.png" alt="">
           <span>小兵旭旭</span>

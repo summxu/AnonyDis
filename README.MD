@@ -12,6 +12,8 @@
     5.  connect-multipart（中间件） 文件接收
     6.  mongoDB 数据存储
     7.  mongoose DAO层
+    8.  redis session 数据缓存
+    9.  connect-redis DAO层
 # 页面结构
   - 登录注册页
     1.  按钮两行排列

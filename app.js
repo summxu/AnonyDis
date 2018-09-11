@@ -7,7 +7,9 @@ var app = express()
 app
   .use('/', express.static('./public'))
   .use('/upload', express.static('./upload'))
-  .use(multiparty({uploadDir:'./linshi'}))
+  .use(multiparty({uploadDir:'./temp'}))
+  .use(bodyParser.urlencoded({ extenfed: false }))
+  .use(bodyParser.json())
   .engine('html',require('express-art-template'))
   /* 加载路由 */
   .use(router)

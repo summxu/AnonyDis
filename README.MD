@@ -29,15 +29,20 @@
       - 我回复的，可以直接删除
 # 路由设计
 
-| 请求方法 | 请求路径 | 请求参数 | 备注 |
+| 请求方法 | 请求路径 | 请求参数 | 是否登录 | 备注 |
 | :------| ------: | :------: | :------: |
-| GET | / |  | 渲染初始化首页，聊天上线初始化 |
-| POST | /sendpost | postid posttitle postimages postcontent postuser posttime| 发帖子 |
+| GET | / | | | 渲染初始化首页，聊天上线初始化 |
+| POST | /sendpost | postid posttitle postimages postcontent postuser posttime| 登录 | 发帖子 |
+| GET | /regist | | | 渲染注册页面 |
+| POST | /regist | username password |  | 处理注册请求 |
+| GET | /login | | | 渲染登录页面 |
+| GET | /logout | | | 处理退出请求 |
 
 # 数据库设计
 
 - user 
   - username
+  - nickname
   - password
   - gender
   - age
@@ -45,8 +50,10 @@
   - photo
   - posts
   - discuss
+  - lastposttime
   - registertime
   - lastlogintime
+  - status [0,0]
 
 - post
   - title
@@ -66,3 +73,23 @@
   - imtext
   - imuser
   - imtime
+
+# 数据库完整性
+
+  - 注册
+  用户名格式：
+  小写字母，数字。长度4-10
+  密码格式：
+  字母+数字，符号。长度6-16
+  nikename格式：
+  字母，数字，中文。长度2-5
+  状态码：
+  code:0 注册通过
+  code:1 用户名重复
+  code:2 禁止新用户注册
+  - 登录
+  状态码：
+  code:0 登录成功
+  code:1 用户名不存在
+  code:2 密码错误
+  code:3 用户已被封禁

@@ -1,0 +1,39 @@
+{{ extend './_layout/home.html' }}
+{{ block 'title' }}登录AnonyDis{{ /block }}
+{{ block content }}
+<section class="center">
+
+<form id="form-login">
+  <legend>登录</legend>
+
+  <div class="form-group">
+    <label for="username">用户名</label>
+    <input type="text" name="username" class="form-control" id="username" placeholder="Input field">
+  </div>
+  <div class="form-group">
+    <label for="password">密码</label>
+    <input type="text" class="form-control" id="password" placeholder="Input field">
+  </div>
+
+  
+
+  <button name="password" type="submit" class="btn btn-primary">login</button>
+</form>
+
+</section>
+<script>
+$("#form-login").on('submit', function (e) {
+  e.preventDefault()
+  var formData = $(this).serialize()
+  $.ajax({
+    type: "POST",
+    url: "/login",
+    data: formData,
+    dataType: 'json',
+    success: function (response) {
+      console.log(response)
+    }
+  });
+});
+</script>
+{{ /block }}

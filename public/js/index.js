@@ -29,8 +29,8 @@ function upload1() {
     processData: false,  // 告诉jQuery不要去处理发送的数据
     contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
     success: function(response,status,xhr){
-      console.log(xhr);
-      if (response === 'success') {
+      console.log(response);
+      if (response.success) {
         $('#sendpost').toggle();
         location.reload()
       }

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "art-template": "^4.13.0",
+    "blueimp-md5": "^2.10.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^3.3.7",
     "connect-multiparty": "^2.1.1",

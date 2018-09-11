@@ -39,7 +39,9 @@
         </button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="me" href="#"></a></li>
+        <li>{{ block 'photo' }}<img src="/img/me.png" class="me img-circle">{{ /block }}</li>
+        <li></li>
+        <li><a id="nickname" href="#">{{ block 'nickname' }}用户名{{ /block }}</a></li>
       </ul>
     </div>
     </div>

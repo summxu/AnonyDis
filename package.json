@@ -16,8 +16,10 @@
     "connect-multiparty": "^2.1.1",
     "express": "^4.16.3",
     "express-art-template": "^1.0.1",
+    "express-session": "^1.15.6",
     "moment": "^2.22.2",
     "mongodb": "^3.1.4",
-    "mongoose": "^5.2.13"
+    "mongoose": "^5.2.13",
+    "socket.io": "^2.1.1"
   }
 }

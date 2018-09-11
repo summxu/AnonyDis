@@ -3,6 +3,7 @@ const mongo = require('./mongo')
 const multiparty = require('connect-multiparty')
 const fs = require('fs')
 const moment = require('moment')
+const md5 = require('blueimp-md5')
 
 moment.locale('zh-cn')
 
@@ -11,6 +12,11 @@ var router = express.Router()
 
 router
   .get('/', (req, res) => {
+    /* 判断登录状态  */
+    var userinfo = req.session.user
+    console.log(req.session.user)
+    /* 进入聊天服务器 */
+    
     mongo.Post.find((err, postdata) => {
       if (err) return res.status(500)
       /* 对象属性抽离，解决template陷入递归 */
@@ -24,6 +30,7 @@ router
       });
       res.render('index.html', {
         post: data,
+        userinfo: userinfo,
         images: images
       })
     })
@@ -96,11 +103,15 @@ router
           code: 3,
           message: '该用户被封禁'
         })
-      }else if (result.password === req.body.password){
-        res.status(200).json({
-          code: 0,
-          message: '登录成功'
-        })
+      }else if (result.password === md5(md5(req.body.password))){
+        // res.status(200).json({
+        //   code: 0,
+        //   message: '登录成功'
+        // })
+        /* 记录session状态 */
+        req.session.user = result
+        // console.log(req.session.user)
+        res.redirect('/')
       }else {
         res.status(200).json({
           code: 2,
@@ -126,14 +137,16 @@ router
       }else if (true) {
         new mongo.User({
           username: req.body.username,
-          password: req.body.password,
+          password: md5(md5(req.body.password)),
           nickname: req.body.nickname
         }).save((err,doc) =>{
-          if (err) res.status(500)
+          if (err) res.status(500).send(err)
           res.status(200).json({
             code: 0,
             message: '注册成功'
           })
+          /* 记录session状态 */
+          req.session.user = doc
         })
       }else {
         res.status(200).json({

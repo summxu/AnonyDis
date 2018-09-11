@@ -20,7 +20,7 @@ function upload1() {
   files.forEach(item => {
     fd.append('pic',item[0])
   });
-  fd.append('postuser','小兵旭旭')
+  fd.append('postuser',$('#nickname').text())
   $.ajax({
     url: "/sendpost",
     type: "POST",
@@ -37,7 +37,6 @@ function upload1() {
     }
   });
 }
-
 /* 发帖显示隐藏 */
 function fatie() {
   $('#sendpost').toggle();

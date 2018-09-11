@@ -8,6 +8,7 @@
     2.  express web框架
     3.  art-templte数据渲染
     4.  moment 时间格式化
+    5.  blueimp-md5 密码MD5加密
     5.  connect-multipart（中间件） 文件接收
     6.  mongoDB 数据存储
     7.  mongoose DAO层

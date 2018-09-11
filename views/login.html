@@ -3,7 +3,7 @@
 {{ block content }}
 <section class="center">
 
-<form id="form-login">
+<form id="form-login" method="POST" action="/login">
   <legend>登录</legend>
 
   <div class="form-group">
@@ -12,28 +12,28 @@
   </div>
   <div class="form-group">
     <label for="password">密码</label>
-    <input type="text" class="form-control" id="password" placeholder="Input field">
+    <input type="text" class="form-control" id="password" name="password" placeholder="Input field">
   </div>
 
   
 
-  <button name="password" type="submit" class="btn btn-primary">login</button>
+  <button type="submit" class="btn btn-primary">login</button>
 </form>
 
 </section>
 <script>
-$("#form-login").on('submit', function (e) {
-  e.preventDefault()
-  var formData = $(this).serialize()
-  $.ajax({
-    type: "POST",
-    url: "/login",
-    data: formData,
-    dataType: 'json',
-    success: function (response) {
-      console.log(response)
-    }
-  });
-});
+// $("#form-login").on('submit', function (e) {
+//   e.preventDefault()
+//   var formData = $(this).serialize()
+//   $.ajax({
+//     type: "POST",
+//     url: "/login",
+//     data: formData,
+//     dataType: 'json',
+//     success: function (response) {
+//       console.log(response)
+//     }
+//   });
+// });
 </script>
 {{ /block }}

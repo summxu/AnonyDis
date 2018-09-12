@@ -1,0 +1,16 @@
+<div id="sendpost">
+  <form id="form1" method="POST" enctype ="multipart/form-data">
+    <legend class="title-main">帖子发表</legend>
+    <div class="form-group">
+      <label class="color" for="title">帖子主题</label>
+      <input type="text" class="form-control" name="title" id="title" placeholder="震惊世界的标题党,99%的人看完后笑喷了!">
+    </div>
+    <div class="form-group">
+      <label class="color" for="exampleInputFile">图片发表</label>
+      <input class="color" type="file"  id="exampleInputFile" multiple="multiple" onchange="imagechange(this)" value="谁是安徽调试的a">
+      <p class="help-block color">无图无真相，没图发个屁。</p>
+    </div>
+    <textarea style="resize:none;" name="content" class="form-control" rows="9"></textarea>
+    <button style="margin-top:10px;" type="button" onclick="upload1()" class="btn btn-primary btn-lg btn-block">发表发表发发表发表发表表发发表发表</button>
+  </form>
+</div>

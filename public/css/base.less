@@ -18,11 +18,11 @@ a,a:hover {
   text-decoration-line: none
 }
 /* 导航 */
-@media (min-width: 1200px){
-  .container {
-    width: 970px;
-  }
-}
+// @media (min-width: 1200px){
+//   .container {
+//     width: 970px;
+//   }
+// }
 .d-nav {
   position: fixed;
   top: 0;
@@ -77,19 +77,18 @@ a,a:hover {
     width: 100%;
   }
   #sendpost {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: rgba(10,10,10,.8);
-    height:500px;
-    width:100%;
-    padding: 20px;
-    .color {
-      color:#ccc;
-    }
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // background-color: rgba(10,10,10,.8);
+    // height:500px;
+    // width:100%;
+    // padding: 20px;
+    // .color {
+    //   color:#ccc;
+    // }
     .title-main {
-      .color();
+      // .color();
       text-align: center;
     }
   }
@@ -153,7 +152,9 @@ a,a:hover {
     }
   }
 }
+
 .right {
+  
   height: 85%;
   width: 300px;
   position: fixed;
@@ -173,9 +174,13 @@ a,a:hover {
   }
   .group-user {
     // background-color: #3f3f3f;
-    width: 500px;
-    padding-bottom: 10px;
+    overflow: hidden;
+    width: 270px;
     border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    .group-user-inner {
+      width: 500px;
+    }
     .user {
       width: 67px;
       height: 67px;
@@ -200,6 +205,13 @@ a,a:hover {
       padding: 5px;
       color: @fontColor;
       border-radius: 10px;
+    }
+  }
+  .content {
+    overflow: hidden;
+    height: 75%;
+    #chatbox-inner {
+      height: 120%;
     }
   }
   .content .message {

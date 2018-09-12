@@ -1,0 +1,26 @@
+{{ each post }}
+<div class="post-item">
+  <div class="media">
+    <a class="pull-left info-i" href="#">
+      <img class="media-object" src="{{ images[$index][0] }}" alt="测试蹄片">
+    </a>
+    <div class="media-body info-p">
+      <a href="#"><h3>{{ $value.title }}</h3></a>
+      <div class="row author">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <img src="/img/me.png" alt="">
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <a href="#">{{ $value.postuser }}</a>
+        </div>
+        <div class="push-4 col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          {{ $value.posttime }}
+        </div>
+        <div class="pull-right col-xs-3 col-sm-3 col-md-3 col-lg-3">
+          <button type="button" class="dis-btn btn btn-default">评论</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ /each }}

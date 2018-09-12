@@ -1,7 +1,9 @@
+# 技术应用
+  - **模板引擎+express+jQuery load 实现异步加载局部页面，可使chatbox不掉线**
 # 项目架构
   - 前台
     1.  bootstrap页面布局+屏幕自适应 
-    2.  jQuery ajax
+    2.  jQuery ajax load
     3.  particles粒子效果
   - 后台
     1.  node数据处理

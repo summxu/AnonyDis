@@ -9,11 +9,31 @@ $(document).ready(function () {
     var marginR = $('.d-nav .container').css('marginRight')
     $('.right').css('right',marginR)
   })
+  /* load 帖子主页 */
+  loadMain()
   /* 聊天框添加滚动事件 */
-  var iscorll = new IScorll($('.right .content')[0],{
-    scrollY:false
+  var chatbox = document.getElementById('chatbox')
+  var roll = new IScroll(chatbox,{
+    scrollY:true,
+    scrollX:true,
+    mouseWheel: true, 
+    snap: true
+  })
+  /* 房间用户滚动事件 */
+  var usersroll = new IScroll($('.group-user')[0],{
+    scrollY:true,
+    scrollX:true,
+    mouseWheel: true, 
+    snap: true
   })
 });
+
+/* 加载首页 */
+function loadMain() {
+  $('.center .left').load("/main", "", function (response, status, request) {
+    this; // dom elemen
+  });
+}
 /* 提交发帖 */
 var files = []
 function imagechange(a) {
@@ -35,13 +55,16 @@ function upload1() {
     success: function(response,status,xhr){
       console.log(response);
       if (response.success) {
-        $('#sendpost').toggle();
-        location.reload()
+        loadMain()
       }
     }
   });
 }
-/* 发帖显示隐藏 */
+
+/* load发帖 */
 function fatie() {
-  $('#sendpost').toggle();
+  $('.center .left').load("/sendpost", "", function (response, status, request) {
+  this; // dom element
+  
+  });
 }

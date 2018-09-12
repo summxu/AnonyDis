@@ -17,23 +17,8 @@ function admin(io) {
       /* 判断登录状态  */
       var userinfo = req.session.user
       console.log(req.session.user)
-
-      mongo.Post.find((err, postdata) => {
-        if (err) return res.status(500)
-        /* 对象属性抽离，解决template陷入递归 */
-        /* mogon取出的对象不正常，转换一下 */
-        var data = JSON.stringify(postdata)
-        data = JSON.parse(data)
-        var images = []
-        data.forEach((element, a) => {
-          images.push(element.images)
-          delete element.images
-        });
-        res.render('index.html', {
-          post: data,
-          userinfo: userinfo,
-          images: images
-        })
+      res.render('index.html', {
+        userinfo: userinfo,
       })
     })
     .post('/sendpost', mutipartMiddeware, (req, res) => {
@@ -157,6 +142,27 @@ function admin(io) {
           })
         }
       })
+    })
+    .get('/main',(req,res) => {
+      mongo.Post.find((err, postdata) => {
+        if (err) return res.status(500)
+        /* 对象属性抽离，解决template陷入递归 */
+        /* mogon取出的对象不正常，转换一下 */
+        var data = JSON.stringify(postdata)
+        data = JSON.parse(data)
+        var images = []
+        data.forEach((element, a) => {
+          images.push(element.images)
+          delete element.images
+        });
+        res.render('./components/main.html', {
+          post: data,
+          images: images
+        })
+      })
+    })
+    .get('/sendpost',(req,res) => {
+      res.render('./components/sendpost.html')
     })
   /* 进入聊天服务器 */
   io.on('connection', (socket) => {

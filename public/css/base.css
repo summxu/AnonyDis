@@ -15,11 +15,6 @@ a:hover {
   text-decoration-line: none;
 }
 /* 导航 */
-@media (min-width: 1200px) {
-  .container {
-    width: 970px;
-  }
-}
 .d-nav {
   position: fixed;
   top: 0;
@@ -69,21 +64,7 @@ a:hover {
   height: 100px;
   width: 100%;
 }
-.center .left #sendpost {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: rgba(10, 10, 10, 0.8);
-  height: 500px;
-  width: 100%;
-  padding: 20px;
-}
-.center .left #sendpost .color {
-  color: #ccc;
-}
 .center .left #sendpost .title-main {
-  color: #ccc;
   text-align: center;
 }
 .bar {
@@ -160,9 +141,13 @@ a:hover {
   padding: 5px 0;
 }
 .right .group-user {
-  width: 500px;
-  padding-bottom: 10px;
+  overflow: hidden;
+  width: 270px;
   border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+.right .group-user .group-user-inner {
+  width: 500px;
 }
 .right .group-user .user {
   width: 67px;
@@ -192,6 +177,13 @@ a:hover {
   padding: 5px;
   color: #eeeeee;
   border-radius: 10px;
+}
+.right .content {
+  overflow: hidden;
+  height: 75%;
+}
+.right .content #chatbox-inner {
+  height: 120%;
 }
 .right .content .message p {
   width: 200px;

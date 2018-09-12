@@ -8,9 +8,9 @@ $(document).ready(function () {
   /* 初始化上线信息 */
   socket.emit('login',user)
   socket.on('userRender',(users) => {
-    $('.group-user').html('')
+    $('.group-user-inner').html('')
     users.forEach(element => {
-      $('.group-user').append(`
+      $('.group-user-inner').append(`
       <div id="${element.ascii}" class="user">
         <img src="${element.img}" alt="">
         <span>${element.name}</span>
@@ -26,7 +26,7 @@ $(document).ready(function () {
   /* 收到消息 */
   socket.on('inmsg',(msgObj) => {
     if (msgObj.name === user.name) {
-    $('.right .content').append(`
+    $('#chatbox-inner').append(`
     <div class="message">
       <img src="${msgObj.img}" alt="">
       <span>${msgObj.name}</span>
@@ -35,7 +35,7 @@ $(document).ready(function () {
     </div>
     `);
     }else{
-    $('.right .content').append(`
+    $('#chatbox-inner').append(`
     <div class="message">
       <img src="${msgObj.img}" alt="">
       <span>${msgObj.name}</span>

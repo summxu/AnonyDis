@@ -6,17 +6,44 @@ $(document).ready(function () {
   user.img = $('#userimg').attr("src");
   var socket = io.connect('http://localhost')
   /* 初始化上线信息 */
-  socket.emit('user',user)
-  socket.on('useradd',(userObj) => {
-    $('.group-user').append(`
-    <div id="${userObj.ascii}" class="user">
-      <img src="${userObj.img}" alt="">
-      <span>${userObj.name}</span>
-    </div>`);
-    console.log(userObj)
+  socket.emit('login',user)
+  socket.on('userRender',(users) => {
+    $('.group-user').html('')
+    users.forEach(element => {
+      $('.group-user').append(`
+      <div id="${element.ascii}" class="user">
+        <img src="${element.img}" alt="">
+        <span>${element.name}</span>
+      </div>`);
+    });
   })
-});
-
-$(document).unload(function () { 
-  io.disconnect()
+  /* 发送消息 */
+  $('.sendmsg-btn').on('click', function () {
+    user.msg = $('.sendmsg').val();
+    socket.emit('msg',user)
+    $('.sendmsg').val('');
+  });
+  /* 收到消息 */
+  socket.on('inmsg',(msgObj) => {
+    if (msgObj.name === user.name) {
+    $('.right .content').append(`
+    <div class="message">
+      <img src="${msgObj.img}" alt="">
+      <span>${msgObj.name}</span>
+      <span>${msgObj.time}</span>
+      <p>${msgObj.msg}</p>
+    </div>
+    `);
+    }else{
+    $('.right .content').append(`
+    <div class="message">
+      <img src="${msgObj.img}" alt="">
+      <span>${msgObj.name}</span>
+      <span>${msgObj.time}</span>
+      <p>${msgObj.msg}</p>
+    </div>
+    `);
+    }
+    
+  })
 });

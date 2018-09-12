@@ -9,6 +9,10 @@ $(document).ready(function () {
     var marginR = $('.d-nav .container').css('marginRight')
     $('.right').css('right',marginR)
   })
+  /* 聊天框添加滚动事件 */
+  var iscorll = new IScorll($('.right .content')[0],{
+    scrollY:false
+  })
 });
 /* 提交发帖 */
 var files = []

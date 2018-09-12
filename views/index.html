@@ -53,18 +53,10 @@
     <div class="right hidden-xs hidden-sm col-md-4 col-lg-4">
       <div class="title">组队聊天室</div>
       <div class="group-user clearfix">
-        <div class="user">
-          <img src="/img/me.png" alt="">
-          <span>小兵旭旭</span>
-        </div>
+        <!-- 此处的users是js控制的 -->
       </div>
       <div class="content">
-        <div class="message">
-          <img src="/img/me.png" alt="">
-          <span>小兵旭旭</span>
-          <span>18:21</span>
-          <p>我是内容，你现在在干嘛，我打算弄个宽度，然后换行什么的</p>
-        </div>
+        
         <div class="m-message clearfix">
           <span>18:21</span>
           <span>小兵旭旭</span>
@@ -74,13 +66,15 @@
       </div>
       <div class="input-submit">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for...">
+          <input type="text" class="sendmsg form-control" placeholder="Search for...">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
+            <button class="sendmsg-btn btn btn-default" type="button">Go!</button>
           </span>
         </div><!-- /input-group -->
       </div>
     </div>
   </div>
 </section>
+<script src="/js/iscroll.js"></script>
+<script src="/js/chat.js"></script>
 {{ /block }}

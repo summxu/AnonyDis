@@ -11,23 +11,13 @@ var mutipartMiddeware = multiparty();
 var router = express.Router()
 /* 暴露函数，通过函数的参数传递IO对象 */
 function admin(io) {
+  userGroup = []
   router
     .get('/', (req, res) => {
       /* 判断登录状态  */
       var userinfo = req.session.user
       console.log(req.session.user)
-      /* 进入聊天服务器 */
-      io.on('connection',(socket) => {
-        console.log('user access:' + socket.id)
-        socket.on('user',(userObj) => {
-          /* 添加上线用户 */
-          io.emit('useradd',userObj)
-        })
-      })
-      io.on('disconnect',() => {
 
-        console.log('user leave:' + socket.id)
-      })
       mongo.Post.find((err, postdata) => {
         if (err) return res.status(500)
         /* 对象属性抽离，解决template陷入递归 */
@@ -35,7 +25,7 @@ function admin(io) {
         var data = JSON.stringify(postdata)
         data = JSON.parse(data)
         var images = []
-        data.forEach((element,a) => {
+        data.forEach((element, a) => {
           images.push(element.images)
           delete element.images
         });
@@ -60,11 +50,11 @@ function admin(io) {
           var target_path = './upload/post/' + item.name
           fs.rename('./' + item.path, target_path, function (err) {
             if (err) res.status(500)
-            postObj.images.push(target_path.replace('.',''))
+            postObj.images.push(target_path.replace('.', ''))
             c--;
-            if (c === 0 ){
+            if (c === 0) {
               postObj.save((err, result) => {
-              if (err) res.status(500)
+                if (err) res.status(500)
                 res.json({
                   success: true,
                   message: '发帖成功'
@@ -77,17 +67,17 @@ function admin(io) {
             });
           });
         });
-      }else {
+      } else {
         var target_path = './upload/post/' + req.files.pic.name
         fs.rename('./' + req.files.pic.path, target_path, function (err) {
           if (err) res.status(500)
-          postObj.images.push(target_path.replace('.',''))
+          postObj.images.push(target_path.replace('.', ''))
           // 删除临时文件夹文件, 
           fs.unlink('./' + req.files.pic.path, function () {
             if (err) res.status(500)
           });
           postObj.save((err, result) => {
-          if (err) res.status(500)
+            if (err) res.status(500)
             res.json({
               success: true,
               message: '发帖成功'
@@ -96,25 +86,25 @@ function admin(io) {
         });
       }
     })
-    .get('/login',(req,res) => {
+    .get('/login', (req, res) => {
       res.render('login.html')
     })
-    .post('/login',(req,res) => {
+    .post('/login', (req, res) => {
       console.log(req.body)
       mongo.User.findOne({
         username: req.body.username
-      },(err,result) => {
-        if(result == null){
+      }, (err, result) => {
+        if (result == null) {
           res.status(200).json({
             code: 1,
             message: '用户不存在'
           })
-        }else if (result.status[0]) {
+        } else if (result.status[0]) {
           res.status(200).json({
             code: 3,
             message: '该用户被封禁'
           })
-        }else if (result.password === md5(md5(req.body.password))){
+        } else if (result.password === md5(md5(req.body.password))) {
           // res.status(200).json({
           //   code: 0,
           //   message: '登录成功'
@@ -123,7 +113,7 @@ function admin(io) {
           req.session.user = result
           // console.log(req.session.user)
           res.redirect('/')
-        }else {
+        } else {
           res.status(200).json({
             code: 2,
             message: '密码错误'
@@ -131,26 +121,26 @@ function admin(io) {
         }
       })
     })
-    .get('/register',(req,res) => {
+    .get('/register', (req, res) => {
       res.render('register.html')
     })
-    .post('/register',(req,res) => {
+    .post('/register', (req, res) => {
       console.log(req.body)
       mongo.User.findOne({
         username: req.body.username
-      },(err,result) => {
+      }, (err, result) => {
         console.log(result)
-        if(result){
+        if (result) {
           res.status(200).json({
             code: 1,
             message: '用户名重复'
           })
-        }else if (true) {
+        } else if (true) {
           new mongo.User({
             username: req.body.username,
             password: md5(md5(req.body.password)),
             nickname: req.body.nickname
-          }).save((err,doc) =>{
+          }).save((err, doc) => {
             if (err) res.status(500).send(err)
             // res.status(200).json({
             //   code: 0,
@@ -160,7 +150,7 @@ function admin(io) {
             /* 记录session状态 */
             req.session.user = doc
           })
-        }else {
+        } else {
           res.status(200).json({
             code: 2,
             message: '禁止新用户注册'
@@ -168,6 +158,29 @@ function admin(io) {
         }
       })
     })
+  /* 进入聊天服务器 */
+  io.on('connection', (socket) => {
+    userObj = {}
+    socket.on('login', (user) => {
+      userObj = user
+      console.log(userObj.name + ' : is login')
+      /* 上线用户加到组 */
+      userGroup.push(userObj)
+      io.emit('userRender', userGroup)
+    })
+    socket.on('msg', (msgObj) => {
+      msgObj.time = moment().format('h:mm:ss a');
+      io.emit('inmsg',msgObj)
+    })
+    /* 用户下线 */
+    socket.on('disconnect', function () {
+      console.log(userObj.name + ' : is logOut');
+      var index = userGroup.indexOf(userObj)
+      userGroup.splice(index, 1)
+      console.log(userGroup)
+      io.emit('userRender', userGroup)
+    });
+  })
   return router
 }
 module.exports = admin

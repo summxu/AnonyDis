@@ -64,7 +64,6 @@ function upload1() {
 /* load发帖 */
 function fatie() {
   $('.center .left').load("/sendpost", "", function (response, status, request) {
-  this; // dom element
-  
+    this; // dom element
   });
 }

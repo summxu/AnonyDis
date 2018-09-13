@@ -17,8 +17,14 @@ function admin(io) {
       /* 判断登录状态  */
       var userinfo = req.session.user
       console.log(req.session.user)
+      if (userinfo === 'undefined') {
+        loginStatus = false
+      }else {
+        loginStatus = true
+      }
       res.render('index.html', {
-        userinfo: userinfo,
+        loginStatus: loginStatus,
+        userinfo: userinfo
       })
     })
     .post('/sendpost', mutipartMiddeware, (req, res) => {
@@ -73,6 +79,10 @@ function admin(io) {
     })
     .get('/login', (req, res) => {
       res.render('login.html')
+    })
+    .get('/logout', (req,res) => {
+      req.session.userName = null; // 删除session
+      res.redirect('/login');
     })
     .post('/login', (req, res) => {
       console.log(req.body)
@@ -163,6 +173,9 @@ function admin(io) {
     })
     .get('/sendpost',(req,res) => {
       res.render('./components/sendpost.html')
+    })
+    .get('/me',(req,res) => {
+      res.render('components/me.html')
     })
   /* 进入聊天服务器 */
   io.on('connection', (socket) => {

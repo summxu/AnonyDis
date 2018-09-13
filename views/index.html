@@ -1,6 +1,14 @@
 {{ extend './_layout/home.html' }}
-{{ block 'nickname' }}{{ userinfo.nickname }}{{ /block }}
-{{ block 'photo' }}<img id="userimg" src="{{ userinfo.photo }}" class="me img-circle">{{ /block }}
+{{ if loginStatus }}
+{{ block 'userinfo' }}
+  <li><img id="userimg" src="{{ userinfo.photo }}" class="me img-circle"></li>
+  <li><a id="nickname" href="javascript:getme();">{{ userinfo.nickname }}</a></li>
+  {{ else }}
+  <li><a href="/login" type="button" class="btn btn-primary">登录</a></li>
+  <li><a href="/register" type="button" class="btn btn-danger">注册</a></li>
+
+{{ /block }}
+{{ /if }}
 {{ block content }}
 <!-- 中心开始 -->
 <section class="center">

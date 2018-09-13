@@ -28,12 +28,6 @@ $(document).ready(function () {
   })
 });
 
-/* 加载首页 */
-function loadMain() {
-  $('.center .left').load("/main", "", function (response, status, request) {
-    this; // dom elemen
-  });
-}
 /* 提交发帖 */
 var files = []
 function imagechange(a) {
@@ -61,9 +55,15 @@ function upload1() {
   });
 }
 
+/* 加载首页 */
+function loadMain() {
+  $('.center .left').load("/main");
+}
 /* load发帖 */
 function fatie() {
-  $('.center .left').load("/sendpost", "", function (response, status, request) {
-    this; // dom element
-  });
+  $('.center .left').load("/sendpost");
+}
+/* 我的页面 */
+function getme() {
+  $('.center .left').load("/me");
 }

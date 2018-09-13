@@ -17,6 +17,7 @@ $(document).ready(function () {
       </div>`);
     });
   })
+  
   /* 发送消息 */
   $('.sendmsg-btn').on('click', function () {
     user.msg = $('.sendmsg').val();
@@ -27,7 +28,7 @@ $(document).ready(function () {
   socket.on('inmsg',(msgObj) => {
     if (msgObj.name === user.name) {
     $('#chatbox-inner').append(`
-    <div class="message">
+    <div class="m-message clearfix">
       <img src="${msgObj.img}" alt="">
       <span>${msgObj.name}</span>
       <span>${msgObj.time}</span>
@@ -44,6 +45,13 @@ $(document).ready(function () {
     </div>
     `);
     }
-    
   })
+  /* 回车监听 */
+  $('.sendmsg').on('keypress', function (e) {
+    if(e.keyCode == 13) {
+      user.msg = $('.sendmsg').val();
+      socket.emit('msg',user)
+      $('.sendmsg').val('');
+    }
+  });
 });

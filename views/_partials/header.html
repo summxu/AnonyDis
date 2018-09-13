@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/nprogress.css">
   <link rel="stylesheet" href="/css/base.css">
 </head>
 <body>
@@ -39,10 +40,13 @@
         </button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        {{ block 'userinfo' }}
-          <li><img id="userimg" src="/img/me.png" class="me img-circle"></li>
-          <li><a id="nickname" href="javascript:getme();">系统管理员</a></li>
-        {{ /block }}
+        {{ if loginStatus }}
+          <li><img id="userimg" src="{{userinfo.img}}" class="me img-circle"></li>
+          <li><a id="nickname" href="javascript:getme();">{{userinfo.nickname}}</a></li>
+        {{ else }}
+          <li><a href="/login" type="button" class="btn btn-primary">登录</a></li>
+          <li><a href="/register" type="button" class="btn btn-danger">注册</a></li>
+        {{ /if }}
       </ul>
     </div>
     </div>
@@ -51,3 +55,4 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<section class="center">

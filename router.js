@@ -11,16 +11,17 @@ var mutipartMiddeware = multiparty();
 var router = express.Router()
 /* 暴露函数，通过函数的参数传递IO对象 */
 function admin(io) {
-  userGroup = []
+  var userGroup = []
+  var loginStatus = false
   router
     .get('/', (req, res) => {
       /* 判断登录状态  */
       var userinfo = req.session.user
-      console.log(req.session.user)
-      if (userinfo === 'undefined') {
-        loginStatus = false
-      }else {
+      console.log(userinfo)
+      if (userinfo) {
         loginStatus = true
+      } else {
+        loginStatus = false
       }
       res.render('index.html', {
         loginStatus: loginStatus,
@@ -78,10 +79,12 @@ function admin(io) {
       }
     })
     .get('/login', (req, res) => {
+      if (loginStatus) res.redirect('/')
       res.render('login.html')
     })
-    .get('/logout', (req,res) => {
-      req.session.userName = null; // 删除session
+    .get('/logout', (req, res) => {
+      req.session.user = null; // 删除session
+      loginStatus = false
       res.redirect('/login');
     })
     .post('/login', (req, res) => {
@@ -117,6 +120,7 @@ function admin(io) {
       })
     })
     .get('/register', (req, res) => {
+      if (loginStatus) res.redirect('/')
       res.render('register.html')
     })
     .post('/register', (req, res) => {
@@ -153,7 +157,7 @@ function admin(io) {
         }
       })
     })
-    .get('/main',(req,res) => {
+    .get('/main', (req, res) => {
       mongo.Post.find((err, postdata) => {
         if (err) return res.status(500)
         /* 对象属性抽离，解决template陷入递归 */
@@ -171,14 +175,16 @@ function admin(io) {
         })
       })
     })
-    .get('/sendpost',(req,res) => {
+    .get('/sendpost', (req, res) => {
+      if(!loginStatus) res.redirect('/login')
       res.render('./components/sendpost.html')
     })
-    .get('/me',(req,res) => {
+    .get('/me', (req, res) => {
       res.render('components/me.html')
     })
   /* 进入聊天服务器 */
   io.on('connection', (socket) => {
+    if (!loginStatus) return false
     userObj = {}
     socket.on('login', (user) => {
       userObj = user
@@ -189,7 +195,7 @@ function admin(io) {
     })
     socket.on('msg', (msgObj) => {
       msgObj.time = moment().format('h:mm:ss a');
-      io.emit('inmsg',msgObj)
+      io.emit('inmsg', msgObj)
     })
     /* 用户下线 */
     socket.on('disconnect', function () {

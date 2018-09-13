@@ -1,17 +1,7 @@
 {{ extend './_layout/home.html' }}
-{{ if loginStatus }}
-{{ block 'userinfo' }}
-  <li><img id="userimg" src="{{ userinfo.photo }}" class="me img-circle"></li>
-  <li><a id="nickname" href="javascript:getme();">{{ userinfo.nickname }}</a></li>
-  {{ else }}
-  <li><a href="/login" type="button" class="btn btn-primary">登录</a></li>
-  <li><a href="/register" type="button" class="btn btn-danger">注册</a></li>
-
-{{ /block }}
-{{ /if }}
 {{ block content }}
 <!-- 中心开始 -->
-<section class="center">
+
   <div class="container">
     <div class="left col-xs-12 col-sm-12 col-md-8 col-lg-8">
       <!-- 此处为中心页面，load异步加载 -->
@@ -26,25 +16,27 @@
       </div>
       <div id="chatbox" class="content">
         <div id="chatbox-inner">
-          <div class="m-message clearfix">
-            <span>18:21</span>
-            <span>小兵旭旭</span>
-            <img src="/img/me.png" alt="">
-            <p >我是内容，你现在在干嘛，我打算弄个宽度，然后换行什么的</p>
-          </div>
+          <!-- 此处加载聊天内容 -->
         </div>
       </div>
       <div class="input-submit">
         <div class="input-group">
-          <input type="text" class="sendmsg form-control" placeholder="Search for...">
+          {{  if loginStatus }}
+          <input type="text" class="sendmsg form-control" placeholder="说你想说的....."">
           <span class="input-group-btn">
-            <button class="sendmsg-btn btn btn-default" type="button">Go!</button>
+            <button class="sendmsg-btn btn btn-default" type="button">发送</button>
           </span>
+          {{ else }}
+          <input type="text" disabled class="sendmsg form-control" placeholder="不登陆怎么发消息呢..."">
+          <span class="input-group-btn">
+            <a href="/login" class="btn btn-default" type="button">登陆</a>
+          </span>
+          {{ /if }}
         </div><!-- /input-group -->
       </div>
     </div>
   </div>
-</section>
+
 
 <script src="/js/chat.js"></script>
 {{ /block }}

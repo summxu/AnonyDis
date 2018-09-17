@@ -43,7 +43,7 @@ function login1() {
     success: function (response) {
       if (response.code === 0) {
         $('.alert').show().val(response.message);
-        // window.location.href = '/'
+        window.location.href = '/'
       }
       console.log(response)
       $('.alert').show()

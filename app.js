@@ -15,13 +15,14 @@ app
   .use(multiparty({uploadDir:'./temp'}))
   .use(bodyParser.urlencoded({ extenfed: false }))
   .use(bodyParser.json())
-  /* 试用 redis 存储session会话 */
+  /* 使用 redis 存储session会话 */
   .use(session({
     store: new redisStore({
       host: '127.0.0.1',
       port: 6379,
       pass: ''
     }),
+    key: 'anonydis',
     secret: 'anonydis', /* 配置加密字符串,保证安全性 */
     resave: false,
     saveUninitialized: true,   /* 无论你用不用session直接分配加密 */

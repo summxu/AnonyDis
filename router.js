@@ -103,13 +103,13 @@ function admin(io) {
             message: '该用户被封禁'
           })
         } else if (result.password === md5(md5(req.body.password))) {
+          /* 记录session状态 */
+          req.session.user = result
+          /* 在响应之前做操作，响应之后的操作一律失效 */
           res.status(200).json({
             code: 0,
             message: '登录成功'
           })
-          /* 记录session状态 */
-          req.session.user = result
-          // console.log(req.session.user)
         } else {
           res.status(200).json({
             code: 2,
@@ -159,13 +159,12 @@ function admin(io) {
             nickname: getName()
           }).save((err, doc) => {
             if (err) res.status(500).send(err)
+            /* 记录session状态 */
+            req.session.user = doc
             res.status(200).json({
               code: 0,
               message: '注册成功'
             })
-            /* 记录session状态 */
-            req.session.user = doc
-            console.log(req.session.user)
           })
         }
       })
@@ -189,8 +188,12 @@ function admin(io) {
       })
     })
     .get('/sendpost', (req, res) => {
-      if(!loginStatus) res.redirect('/login')
-      res.render('./components/sendpost.html')
+      if(!loginStatus) {
+        res.send('不登陆无法发帖<script>location.href = "/login"</script>')
+      } else {
+        res.render('./components/sendpost.html')
+      }
+      
     })
     .get('/me', (req, res) => {
       res.render('components/me.html')

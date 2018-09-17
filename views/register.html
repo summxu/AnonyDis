@@ -1,57 +1,60 @@
-{{ extend './_layout/home.html' }}
-{{ block 'title' }}登录AnonyDis{{ /block }}
-{{ block content }}
-<link rel="stylesheet" href="/css/AdminLTE.min.css">
-<link rel="stylesheet" href="/css/blue.css">
-<section class="center hold-transition login-page">
-  <div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>AnonyDis</b></a>
-  </div>
-
-  <div class="register-box-body">
-    <p class="login-box-msg">Please do not use real information</p>
-    <form action="../../index.html" method="post">
-      <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="username">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Retype password">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> 我同意本站的 <a href="#">协议</a>
-            </label>
-          </div>
+{{ extend './_layout/home.html' }} {{ block 'title' }}注册AnonyDis{{ /block }} {{ block content }}
+<link rel="stylesheet" href="/css/login.css" type="text/css" />
+<section style="background:url('/img/loginbg.jpg');height: 100%;width: 100%;position: fixed;top: 0;padding-top:150px;" id="content"
+  class="m-t-lg wrapper-md animated fadeInUp ">
+  <div class="container aside-xl" style="margin-top: 48px;">
+    <a class="navbar-brand block"><span class="h1 font-bold" style="color: #ffffff">AnonyDis</span></a>
+    <section class="m-b-lg">
+      <header class="wrapper text-center">
+        <strong class="text-sucess">Please do not use real information</strong>
+      </header>
+      <form id="form2" action="javascript:;">
+        <div class="form-group">
+          <input type="username" name="username" placeholder="用户名" class="form-control  input-lg text-center no-border">
         </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">注册</button>
+        <div class="form-group">
+          <input type="password" name="password" placeholder="密码" class="form-control  input-lg text-center no-border">
         </div>
-        <!-- /.col -->
-      </div>
-    </form>
-    <a href="login.html" class="text-center">账号我有了</a>
+        <div class="form-group">
+          <input type="password" name="repassword" placeholder="确认密码" class="form-control  input-lg text-center no-border">
+        </div>
+        
+        <div style="display:none;" class="alert alert-danger ">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <strong>提示</strong>
+        </div>
+        
+        <button onclick="login1()" class="btn btn-lg btn-danger lt b-white b-2x btn-block">注册</button>
+      </form>
+    </section>
   </div>
-</div>
 </section>
-<script src="/js/icheck.min.js"></script>
 <script>
-$(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' /* optional */
-    });
-  });
-</script>
 
+/* 注册 */
+$('.form-control').focus(function (e) { 
+  e.preventDefault();
+  $('.alert').hide()
+});
+function login1() {
+  $.ajax({
+    type: "POST",
+    url: "/register",
+    data: new FormData(document.getElementById('form2')),
+    processData: false,
+    contentType: false,
+    success: function (response) {
+      if (response.code === 0) {
+        $('.alert').show().val(response.message);
+        window.location.href = '/'
+      }
+      console.log(response)
+      $('.alert').show()
+      document.getElementsByClassName('alert')[0].innerHTML = response.message
+    }
+  });
+}  
+</script>
+</body>
+</html>
 {{ /block }}

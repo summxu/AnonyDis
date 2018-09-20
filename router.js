@@ -156,7 +156,8 @@ function admin(io) {
           new mongo.User({
             username: req.body.username,
             password: md5(md5(req.body.password)),
-            nickname: getName()
+            nickname: getName(),
+            photo: getPic()
           }).save((err, doc) => {
             if (err) res.status(500).send(err)
             /* 记录session状态 */
@@ -197,6 +198,9 @@ function admin(io) {
     })
     .get('/me', (req, res) => {
       res.render('components/me.html')
+    })
+    .get('/postinfo',(req,res) => {
+      res.render('components/postinfo.html')
     })
   /* 进入聊天服务器 */
   io.on('connection', (socket) => {
@@ -252,6 +256,12 @@ function admin(io) {
     var name = familyNames[i]+givenNames[j];
     console.log(name)
     return name
+  }
+  function getPic() {
+    var num = parseInt( Math.random() * 7 )
+    var ext = parseInt( Math.random() * 2 )
+    if (ext) return `/img/me (${num}).jpg`
+    return `/img/me (${num}).png`
   }
   return router
 }

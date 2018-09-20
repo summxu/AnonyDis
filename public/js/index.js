@@ -74,3 +74,8 @@ function fatie() {
 function getme() {
   $('.center .left').load("/me");
 }
+/* 帖子详情 */
+function postinfo() {
+  $('.center .left').load("/postinfo");
+  
+}

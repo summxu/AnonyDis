@@ -27,7 +27,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
         <li ><a onclick="fatie()" href="javascript:;">发帖</a></li>
-        <li><a href="#">
+        <li><a href="javascript:postinfo();">
           <i class="fa fa-bell" aria-hidden="true"></i>          
         </a></li>
       </ul>
@@ -41,7 +41,7 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         {{ if loginStatus }}
-          <li><img id="userimg" src="{{userinfo.img}}" class="me img-circle"></li>
+          <li><img id="userimg" src="{{userinfo.photo}}" class="me img-rounded"img-rounded""></li>
           <li><a id="nickname" href="javascript:getme();">{{userinfo.nickname}}</a></li>
         {{ else }}
           <li><a href="/login" type="button" class="btn btn-primary">登录</a></li>

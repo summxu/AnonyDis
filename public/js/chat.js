@@ -12,7 +12,7 @@ $(document).ready(function () {
     users.forEach(element => {
       $('.group-user-inner').append(`
       <div id="${element.ascii}" class="user">
-        <img src="${element.img}" alt="">
+        <img class="img-circle" src="${element.img}" alt="">
         <span>${element.name}</span>
       </div>`);
     });
@@ -29,7 +29,7 @@ $(document).ready(function () {
     if (msgObj.name === user.name) {
     $('#chatbox-inner').append(`
     <div class="m-message clearfix">
-      <img src="${msgObj.img}" alt="">
+      <img class="img-circle" src="${msgObj.img}" alt="">
       <span>${msgObj.name}</span>
       <span>${msgObj.time}</span>
       <p>${msgObj.msg}</p>
@@ -38,7 +38,7 @@ $(document).ready(function () {
     }else{
     $('#chatbox-inner').append(`
     <div class="message">
-      <img src="${msgObj.img}" alt="">
+      <img class="img-circle" src="${msgObj.img}" alt="">
       <span>${msgObj.name}</span>
       <span>${msgObj.time}</span>
       <p>${msgObj.msg}</p>

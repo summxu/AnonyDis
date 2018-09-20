@@ -55,6 +55,8 @@
 | POST | /regist | username password |  | 处理注册请求 |
 | GET | /login | | | 渲染登录页面 |
 | GET | /logout | | | 处理退出请求 |
+| GET | /postinfo | post_id | 否 | 渲染帖子详情页 |
+| GET | /me | session_userinfo | 是 | 渲染我的页面 |
 
 # 数据库设计
 
